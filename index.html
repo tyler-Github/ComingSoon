@@ -84,14 +84,15 @@
       color: #8a2be2;
     }
 
-  @keyframes moveShapes {
-    0% {
-      transform: translate(0, 0);
+
+    @keyframes moveShapes {
+      0% {
+        transform: translate(0, 0) rotate(0);
+      }
+      100% {
+        transform: translate(var(--translate-x), var(--translate-y)) rotate(var(--rotate));
+      }
     }
-    100% {
-      transform: translate(100vw, 100vh);
-    }
-  }
   </style>
 </head>
 <body>
@@ -111,25 +112,26 @@
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
+<script>
     const shapes = document.querySelectorAll('.shape');
+    const bodyWidth = document.body.clientWidth;
+    const bodyHeight = document.body.clientHeight;
 
-    // Move the shapes around the screen
-    function moveShapes() {
-      shapes.forEach(shape => {
-        const x = getRandomPosition(0, window.innerWidth - shape.offsetWidth);
-        const y = getRandomPosition(0, window.innerHeight - shape.offsetHeight);
-        shape.style.transform = `translate(${x}px, ${y}px)`;
-      });
-    }
+    shapes.forEach(shape => {
+      const translateX = getRandomNumber(-bodyWidth / 2, bodyWidth / 2);
+      const translateY = getRandomNumber(-bodyHeight / 2, bodyHeight / 2);
+      const rotate = getRandomNumber(0, 360);
+      const animationDelay = getRandomNumber(0, 5000);
 
-    // Generate random position within a range
-    function getRandomPosition(min, max) {
+      shape.style.setProperty('--translate-x', `${translateX}px`);
+      shape.style.setProperty('--translate-y', `${translateY}px`);
+      shape.style.setProperty('--rotate', `${rotate}deg`);
+      shape.style.setProperty('animation-delay', `${animationDelay}ms`);
+    });
+
+    function getRandomNumber(min, max) {
       return Math.random() * (max - min) + min;
     }
-
-    // Update shapes position every 3 seconds
-    setInterval(moveShapes, 3000);
   </script>
 </body>
 </html>
