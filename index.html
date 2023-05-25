@@ -136,15 +136,16 @@
     const animateShape = () => {
       if (translateX + deltaX > bodyWidth - shapeSize || translateX + deltaX < 0) {
         deltaX = -deltaX;
+        rotate += getRandomNumber(0, 180); // Random rotation between 0 to 180 degrees when bouncing off the horizontal edges
       }
 
       if (translateY + deltaY > bodyHeight - shapeSize || translateY + deltaY < 0) {
         deltaY = -deltaY;
+        rotate += getRandomNumber(0, 180); // Random rotation between 0 to 180 degrees when bouncing off the vertical edges
       }
 
       translateX += deltaX;
       translateY += deltaY;
-      rotate += getRandomNumber(1, 5); // Random rotation between 1 to 5 degrees
 
       shape.style.left = `${translateX}px`;
       shape.style.top = `${translateY}px`;
