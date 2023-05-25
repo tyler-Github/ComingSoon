@@ -173,7 +173,8 @@
 
       shape.style.left = `${translateX}px`;
       shape.style.top = `${translateY}px`;
-      shape.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotationAngle}deg)`;
+      shape.style.transformOrigin = 'center center';
+      shape.style.transform = `rotate(${rotationAngle}deg)`;
 
       requestAnimationFrame(animateShape);
     };
