@@ -111,7 +111,7 @@
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
- <script>
+<script>
     const shapes = document.querySelectorAll('.shape');
     const bodyWidth = document.body.clientWidth;
     const bodyHeight = document.body.clientHeight;
@@ -119,12 +119,12 @@
     const animationDuration = 6;
 
     shapes.forEach(shape => {
-      const translateX = getRandomNumber(shapeSize - bodyWidth, bodyWidth - shapeSize);
-      const translateY = getRandomNumber(shapeSize - bodyHeight, bodyHeight - shapeSize);
+      const translateX = getRandomNumber(shapeSize, bodyWidth - shapeSize);
+      const translateY = getRandomNumber(shapeSize, bodyHeight - shapeSize);
       const rotate = getRandomNumber(0, 360);
       const animationDelay = getRandomNumber(0, 5000);
-      const directionX = Math.random() < 0.5 ? -1 : 1;
-      const directionY = Math.random() < 0.5 ? -1 : 1;
+      const directionX = getRandomDirection();
+      const directionY = getRandomDirection();
 
       shape.style.setProperty('--translate-x', `${translateX}px`);
       shape.style.setProperty('--translate-y', `${translateY}px`);
@@ -137,6 +137,10 @@
 
     function getRandomNumber(min, max) {
       return Math.random() * (max - min) + min;
+    }
+
+    function getRandomDirection() {
+      return Math.random() < 0.5 ? -1 : 1;
     }
   </script>
 </body>
