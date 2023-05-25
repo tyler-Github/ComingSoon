@@ -155,8 +155,9 @@
       translateY += deltaY;
       rotationAngle += rotationSpeed;
 
-      const transformString = `translate(${translateX}px, ${translateY}px) rotate(${rotationAngle}deg)`;
-      shape.style.transform = transformString;
+      shape.style.left = `${translateX}px`;
+      shape.style.top = `${translateY}px`;
+      shape.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotationAngle}deg)`;
 
       requestAnimationFrame(animateShape);
     };
