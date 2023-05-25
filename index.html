@@ -114,18 +114,24 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
-    // Randomly position the shapes on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      const shapes = document.querySelectorAll('.shape');
+    const shapes = document.querySelectorAll('.shape');
+
+    // Move the shapes around the screen
+    function moveShapes() {
       shapes.forEach(shape => {
-        shape.style.top = getRandomPosition(0, window.innerHeight - shape.offsetHeight) + 'px';
-        shape.style.left = getRandomPosition(0, window.innerWidth - shape.offsetWidth) + 'px';
+        const x = getRandomPosition(0, window.innerWidth - shape.offsetWidth);
+        const y = getRandomPosition(0, window.innerHeight - shape.offsetHeight);
+        shape.style.transform = `translate(${x}px, ${y}px)`;
       });
-    });
+    }
 
     // Generate random position within a range
     function getRandomPosition(min, max) {
       return Math.random() * (max - min) + min;
     }
+
+    // Update shapes position every 3 seconds
+    setInterval(moveShapes, 3000);
   </script>
 </body>
+</html>
